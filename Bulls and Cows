@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string getHint(string s, string g) {
+        int bulls=0;
+        int cows =0;
+        unordered_map<int,int> mps;
+        // unordered_map<int,int> mpg;
+        // for(int i=0;i<g.size();i++) mps[s[i]]++;
+        // for(int i=0;i<g.size();i++) mpg[g[i]]++;
+        for(int i=0;i<g.size();i++)
+        {
+            // mp[s[i]]++;
+            
+            if(s[i]==g[i])
+            {
+                bulls++;
+            }
+            mps[s[i]-'0']++;    
+        }
+        for(auto it:g) {
+            if(mps[it-'0']>0) {
+                mps[it-'0']--;
+                cows++;
+            }
+        }
+        cows-=bulls;
+       string ans = to_string(bulls)+"A"+to_string(cows)+"B";
+       return ans;
+    }
+};
